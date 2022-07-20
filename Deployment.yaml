@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-nodejs-hello
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: k8s-nodejs-hello
+  template:
+    metadata:
+      labels:
+        app: k8s-nodejs-hello
+    spec:
+      containers:
+      - name: k8s-nodejs-hello
+        image: rwiteshbera/nodejs_app:2.0.0 
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
